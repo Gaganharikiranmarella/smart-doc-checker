@@ -1,0 +1,302 @@
+/* ===========================
+   Smart Doc Checker — Neo Glass UI
+   =========================== */
+
+:root {
+  --bg-a: #0b1220;
+  --bg-b: #0a1a2b;
+  --glass: rgba(255, 255, 255, 0.08);
+  --glass-strong: rgba(255, 255, 255, 0.12);
+  --border: rgba(255, 255, 255, 0.18);
+  --ring: rgba(93, 220, 255, 0.45);
+  --accent: #5ddcff;
+  --accent-2: #a8ff78;
+  --accent-3: #ff8bd4;
+  --text: #eaf6ff;
+  --muted: #b9c8d6;
+  --ok: #76f2c4;
+  --warn: #ffd56a;
+  --danger: #ff7a7a;
+  --shadow: 0 10px 30px rgba(0,0,0,0.35), inset 0 0 0 1px rgba(255,255,255,0.06);
+  --radius-xl: 18px;
+  --radius-lg: 14px;
+  --radius-md: 12px;
+  --blur: 16px;
+  --speed-1: 180ms;
+  --speed-2: 450ms;
+  --speed-3: 900ms;
+}
+
+/* Animated aurora background with subtle parallax particles */
+body {
+  margin: 0;
+  min-height: 100vh;
+  color: var(--text);
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Inter, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+  background:
+    radial-gradient(1200px 800px at 10% 10%, rgba(93,220,255,0.12), transparent 60%),
+    radial-gradient(900px 700px at 85% 20%, rgba(168,255,120,0.10), transparent 60%),
+    linear-gradient(160deg, var(--bg-a), var(--bg-b));
+  overflow-x: hidden;
+}
+
+#app {
+  max-width: 1100px;
+  margin: 64px auto;
+  padding: 24px;
+  position: relative;
+}
+
+/* Floating particles */
+#app::before,
+#app::after {
+  content: "";
+  position: fixed;
+  inset: -20% -10% auto auto;
+  width: 1200px;
+  height: 1200px;
+  background:
+    radial-gradient(closest-side, rgba(93,220,255,0.08), transparent 70%),
+    radial-gradient(closest-side, rgba(255,139,212,0.06), transparent 70%);
+  filter: blur(40px);
+  transform: translateZ(0);
+  animation: float-a 24s ease-in-out infinite alternate;
+  pointer-events: none;
+}
+#app::after {
+  inset: auto auto -25% -15%;
+  width: 1000px;
+  height: 1000px;
+  animation: float-b 28s ease-in-out infinite alternate;
+}
+@keyframes float-a { to { transform: translate3d(-2%, 1%, 0) rotate(1deg); } }
+@keyframes float-b { to { transform: translate3d(2%, -1%, 0) rotate(-1deg); } }
+
+/* Card: glassmorphism shell */
+.card {
+  background: var(--glass);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  backdrop-filter: blur(var(--blur));
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+/* Header */
+h1 {
+  font-weight: 800;
+  letter-spacing: 0.4px;
+  font-size: 34px;
+  margin: 0 0 18px 0;
+  background: linear-gradient(90deg, var(--text), var(--accent));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  filter: drop-shadow(0 4px 24px rgba(93,220,255,0.15));
+}
+
+#usage {
+  display: inline-flex;
+  gap: 12px;
+  align-items: center;
+  padding: 10px 14px;
+  border-radius: 999px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));
+  border: 1px solid var(--border);
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.05);
+  backdrop-filter: blur(10px);
+  position: relative;
+  isolation: isolate;
+}
+
+#usage::after {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, rgba(93,220,255,0.2), rgba(168,255,120,0.15), rgba(255,139,212,0.2));
+  filter: blur(8px);
+  opacity: 0.6;
+  z-index: -1;
+}
+
+/* Controls layout */
+.controls {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 16px;
+  margin: 18px 0 22px;
+}
+.controls .row {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+/* Inputs */
+input[type="text"],
+input[type="file"] {
+  padding: 12px 14px;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+  background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.04));
+  color: var(--text);
+  outline: none;
+  transition: border-color var(--speed-1), box-shadow var(--speed-1), transform var(--speed-1);
+}
+input[type="text"]:focus,
+input[type="file"]:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--ring);
+  transform: translateY(-1px);
+}
+
+/* Buttons */
+button {
+  --bg: linear-gradient(180deg, rgba(93,220,255,0.25), rgba(93,220,255,0.12));
+  --bg-hover: linear-gradient(180deg, rgba(93,220,255,0.35), rgba(93,220,255,0.2));
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 11px 16px;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+  background: var(--bg);
+  color: var(--text);
+  cursor: pointer;
+  transition: transform var(--speed-1) ease, filter var(--speed-1) ease, background var(--speed-1) ease;
+  backdrop-filter: blur(6px);
+  box-shadow: var(--shadow);
+}
+button:hover {
+  background: var(--bg-hover);
+  transform: translateY(-2px);
+}
+button:active {
+  transform: translateY(0);
+}
+button.primary {
+  --bg: linear-gradient(180deg, rgba(168,255,120,0.32), rgba(168,255,120,0.15));
+  --bg-hover: linear-gradient(180deg, rgba(168,255,120,0.46), rgba(168,255,120,0.22));
+}
+button.warn {
+  --bg: linear-gradient(180deg, rgba(255,213,106,0.30), rgba(255,213,106,0.14));
+  --bg-hover: linear-gradient(180deg, rgba(255,213,106,0.44), rgba(255,213,106,0.2));
+}
+
+/* Neon ring on hover */
+button::after {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border-radius: inherit;
+  background: radial-gradient(120px 60px at var(--mx,50%) var(--my,50%), rgba(93,220,255,0.35), transparent 50%),
+              radial-gradient(120px 60px at calc(100% - var(--mx,50%)) calc(100% - var(--my,50%)), rgba(255,139,212,0.25), transparent 50%);
+  opacity: 0;
+  transition: opacity var(--speed-2) ease;
+  pointer-events: none;
+}
+button:hover::after { opacity: 1; }
+button:where(:hover, :focus) { filter: brightness(1.05); }
+button:where(:hover) { --mx: 30%; --my: 30%; }
+
+/* Output panel */
+pre#out {
+  background: var(--glass);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  padding: 18px;
+  line-height: 1.45;
+  color: var(--muted);
+  box-shadow: var(--shadow);
+  max-height: 420px;
+  overflow: auto;
+  position: relative;
+}
+
+/* Glass link */
+a#download {
+  color: var(--accent);
+  text-decoration: none;
+  padding: 10px 14px;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+  background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));
+  transition: transform var(--speed-1), box-shadow var(--speed-1);
+}
+a#download:hover {
+  box-shadow: 0 0 0 3px var(--ring);
+  transform: translateY(-2px);
+}
+
+/* Usage chips inside #usage */
+#usage span {
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.12), rgba(255,255,255,0.05));
+  border: 1px solid var(--border);
+}
+
+/* Subtle shimmering divider */
+.hr {
+  height: 1px;
+  background: linear-gradient(90deg, rgba(93,220,255,0), rgba(93,220,255,0.5), rgba(93,220,255,0));
+  margin: 18px 0;
+  opacity: 0.6;
+}
+
+/* Micro animations */
+@keyframes pop {
+  0% { transform: scale(0.98); opacity: 0.6; }
+  100% { transform: scale(1); opacity: 1; }
+}
+.card, pre#out, #usage { animation: pop var(--speed-2) ease; }
+
+/* Responsive */
+@media (max-width: 860px) {
+  #app { margin: 28px auto; padding: 16px; }
+  .controls { grid-template-columns: 1fr; }
+}
+
+/* Optional: rainbow border animation utility */
+.rainbow-border {
+  position: relative;
+  border-radius: var(--radius-xl);
+  background: var(--glass);
+  border: 1px solid var(--border);
+  overflow: hidden;
+}
+.rainbow-border::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border-radius: inherit;
+  background: conic-gradient(from 0deg,
+    #5ddcff, #a8ff78, #ff8bd4, #5ddcff);
+  filter: blur(14px);
+  opacity: 0.25;
+  animation: spin var(--speed-3) linear infinite;
+  pointer-events: none;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* Utility layout wrappers to adopt new styles easily */
+.container {
+  display: grid;
+  gap: 16px;
+}
+.toolbar {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.panel {
+  padding: 16px;
+  border-radius: var(--radius-xl);
+  background: var(--glass);
+  border: 1px solid var(--border);
+  backdrop-filter: blur(var(--blur));
+  box-shadow: var(--shadow);
+}

@@ -1,0 +1,13 @@
+fastapi
+uvicorn
+python-multipart
+pydantic
+openai
+python-dotenv
+beautifulsoup4
+requests
+numpy
+scikit-learn
+sentence-transformers
+reportlab
+aiofiles

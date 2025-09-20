@@ -1,0 +1,28 @@
+<!-- frontend/index.html -->
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Smart Doc Checker</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="app">
+    <h1>Smart Doc Checker</h1>
+    <div id="usage">Docs: <span id="docs">0</span> • Reports: <span id="reports">0</span></div>
+    <div>
+      <input type="text" id="user" placeholder="user_id">
+      <button id="init">Init</button>
+    </div>
+    <div>
+      <input type="file" id="file" multiple>
+      <button id="upload">Upload</button>
+      <button id="analyze">Analyze</button>
+      <button id="report">Generate Report</button>
+      <a id="download" href="#" target="_blank">Download last</a>
+    </div>
+    <pre id="out"></pre>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>
