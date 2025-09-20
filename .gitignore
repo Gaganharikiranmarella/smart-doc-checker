@@ -1,0 +1,90 @@
+# === Python compiled files ===
+__pycache__/
+*.py[cod]
+*$py.class
+
+# === Jupyter Notebooks checkpoint ===
+.ipynb_checkpoints/
+
+# === Virtual environments ===
+env/
+venv/
+.venv/
+ENV/
+env.bak/
+.conda/
+*.egg-info/
+
+# === Environment and API key files ===
+.env
+.env.*
+*.env
+*.key
+*.pem
+*.p12
+*.crt
+*.der
+*.cer
+*.cfg
+*.conf
+*.secret
+*.token
+apikeys/
+secrets/
+credentials/
+*.json
+
+# === Model weights and checkpoints ===
+*.pt
+*.pth
+*.ckpt
+*.h5
+*.tflite
+*.joblib
+*.pkl
+*.onnx
+
+# === Dataset files ===
+*.csv
+*.tsv
+*.zip
+*.tar.gz
+*.npz
+*.npy
+
+# === Logs, debug, cache ===
+*.log
+*.out
+*.bak
+*.tmp
+*.swp
+.cache/
+__logs__/
+
+# === OS and editor files ===
+.DS_Store
+Thumbs.db
+*.~lock.*
+*.swp
+*.swo
+
+# === VSCode and IDE configs ===
+.vscode/
+.idea/
+*.code-workspace
+*.sublime-workspace
+*.sublime-project
+
+# === Node/npm files if present ===
+node_modules/
+package-lock.json
+yarn.lock
+
+# === Git credentials ===
+.git-credentials
+.gitattributes
+.githooks/
+
+# === Others you manually add ===
+downloaded_models/
+private_configs/
